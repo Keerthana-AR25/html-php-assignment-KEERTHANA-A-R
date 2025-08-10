@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Transaction</title>
+</head>
+<body>
+<h2>Simple Bank Transaction</h2>
+
+<?php
+$balance = 1000; // Starting balance
+
+// Function to deposit amount
+function deposit($amount, &$balance) {
+    if ($amount > 0) {
+        $balance += $amount;
+        echo "₹$amount deposited successfully.<br>";
+    } else {
+        echo "Invalid deposit amount.<br>";
+    }
+}
+
+// Function to withdraw amount
+function withdraw($amount, &$balance) {
+    if ($amount > 0 && $amount <= $balance) {
+        $balance -= $amount;
+        echo "₹$amount withdrawn successfully.<br>";
+    } elseif ($amount > $balance) {
+        echo "Insufficient balance.<br>";
+    } else {
+        echo "Invalid withdrawal amount.<br>";
+    }
+}
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $choice = $_POST['choice'];
+    $amount = $_POST['amount'];
+
+    switch ($choice) {
+        case "deposit":
+            deposit($amount, $balance);
+            break;
+        case "withdraw":
+            withdraw($amount, $balance);
+            break;
+        default:
+            echo "Invalid transaction choice.<br>";
+    }
+
+    echo "<strong>Current Balance: ₹$balance</strong><br><br>";
+}
+?>
+
+<form method="post">
+    Transaction Type:
+    <select name="choice" required>
+        <option value="deposit">Deposit</option>
+        <option value="withdraw">Withdraw</option>
+    </select><br><br>
+
+    Amount: <input type="number" name="amount" min="1" required><br><br>
+    <input type="submit" value="Submit Transaction">
+</form>
+
+</body>
+</html>
