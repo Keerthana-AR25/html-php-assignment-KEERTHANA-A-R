@@ -1,0 +1,42 @@
+<?php
+// Simulated text file name
+$filename = "sample.txt";
+
+// Simulated file content
+$fileContent = "Hello, this is the first line of the file.\n";
+$fileContent .= "This is the second line.\n";
+$fileContent .= "And this is the third line.\n";
+
+// Display message
+echo "Opening file '$filename' and printing all data (simulated):\n\n";
+
+// Print the entire file content
+echo $fileContent;
+
+// Simulate reading line by line (like fopen/fgets)
+echo "\nReading line by line (simulated):\n";
+$lines = explode("\n", $fileContent); // Split content into lines
+foreach($lines as $line){
+    if(!empty($line)){
+        echo $line . "\n";
+    }
+}
+?>
+
+
+output:
+
+Opening file 'sample.txt' and printing all data (simulated):
+
+Hello, this is the first line of the file.
+This is the second line.
+And this is the third line.
+
+Reading line by line (simulated):
+Hello, this is the first line of the file.
+This is the second line.
+And this is the third line.
+
+
+
+=== Code Execution Successful ===

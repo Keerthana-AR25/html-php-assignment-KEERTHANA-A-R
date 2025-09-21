@@ -1,0 +1,65 @@
+<?php
+// (a) Initiate session
+session_start();
+
+// (b) Check if counter exists
+if (!isset($_SESSION['visit_count'])) {
+    $_SESSION['visit_count'] = 0; // new session
+}
+
+// (c) Increment counter
+$_SESSION['visit_count']++;
+
+// (d) Store back
+$visits = $_SESSION['visit_count'];
+
+// (f) Initialize uploaded files array
+if (!isset($_SESSION['uploaded_files'])) {
+    $_SESSION['uploaded_files'] = [];
+}
+
+$msg = "";
+
+// NOTE: Online compilers don't support POST forms properly.
+// So we simulate file upload by reading from CLI input instead of HTML form.
+if (PHP_SAPI === 'cli') {
+    // In compiler, simulate input with STDIN
+    echo "Enter a file name to upload (or leave empty to skip): ";
+    $filename = trim(fgets(STDIN));
+
+    if ($filename !== "") {
+        if (in_array($filename, $_SESSION['uploaded_files'])) {
+            $msg = "Error: File '$filename' already uploaded!\n";
+        } else {
+            $_SESSION['uploaded_files'][] = $filename;
+            $msg = "File '$filename' uploaded successfully!\n";
+        }
+    }
+}
+echo "=== Page Visit Counter ===\n";
+echo "You have visited this page $visits times.\n";
+
+echo "\n=== File Upload Simulation ===\n";
+if ($msg) echo $msg;
+
+if (!empty($_SESSION['uploaded_files'])) {
+    echo "Files uploaded in this session:\n";
+    foreach ($_SESSION['uploaded_files'] as $f) {
+        echo " - $f\n";
+    }
+} else {
+    echo "No files uploaded yet.\n";
+}
+
+
+
+OUTPUT:
+
+Enter a file name to upload (or leave empty to skip): madhu
+=== Page Visit Counter ===
+You have visited this page 1 times.
+
+=== File Upload Simulation ===
+File 'madhu' uploaded successfully!
+Files uploaded in this session:
+ - madhu

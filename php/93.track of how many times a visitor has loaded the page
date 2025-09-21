@@ -1,0 +1,23 @@
+<?php
+// Cookie name
+$cookie_name = "visit_count";
+
+// Check if cookie exists
+if(isset($_COOKIE[$cookie_name])){
+    // Increment visit count
+    $visit_count = $_COOKIE[$cookie_name] + 1;
+} else {
+    // First visit
+    $visit_count = 1;
+}
+
+// Set/update the cookie (expires in 1 year)
+setcookie($cookie_name, $visit_count, time() + (365*24*60*60), "/");
+
+// Display visit count
+echo "You have visited this page $visit_count time(s).\n";
+?>
+
+OUTPUT:
+
+You have visited this page 1 time(s).

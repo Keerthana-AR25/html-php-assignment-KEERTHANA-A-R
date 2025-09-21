@@ -1,0 +1,36 @@
+<?php
+// Simulated file content (instead of an actual file)
+$filename = "example.txt";
+$simulatedFileContent = "Hello, this is a sample file.\nThis is the second line.\n";
+
+// Display that we are "reading" the file
+echo "Reading file '$filename' (simulated):\n\n";
+
+// Using file_get_contents simulation
+$content = $simulatedFileContent; // Normally: file_get_contents($filename)
+echo $content;
+
+// Alternative: Using fopen, fread, fclose (simulated)
+echo "\nReading line by line (simulated using fopen/fread):\n";
+
+$lines = explode("\n", $simulatedFileContent); // simulate reading lines
+foreach($lines as $line){
+    if(!empty($line)){
+        echo $line . "\n";
+    }
+}
+?>
+
+output:
+
+Reading file 'example.txt' (simulated):
+
+Hello, this is a sample file.
+This is the second line.
+
+Reading line by line (simulated using fopen/fread):
+Hello, this is a sample file.
+This is the second line.
+
+
+=== Code Execution Successful ===

@@ -1,0 +1,83 @@
+<?php
+// Simulated cookies array
+$simulatedCookies = [];
+
+// Cookie 1: Basic cookie
+$simulatedCookies['user'] = "JohnDoe";
+
+// Cookie 2: Cookie with expiration
+$simulatedCookies['session_id'] = [
+    "value" => "abc123",
+    "expires" => date("Y-m-d H:i:s", time() + 3600)
+];
+
+// Cookie 3: Cookie with path
+$simulatedCookies['theme'] = [
+    "value" => "dark",
+    "path" => "/"
+];
+
+// Cookie 4: Cookie with domain
+$simulatedCookies['lang'] = [
+    "value" => "en",
+    "domain" => "example.com"
+];
+
+// Cookie 5: Secure cookie
+$simulatedCookies['secure_cookie'] = [
+    "value" => "secure_value",
+    "secure" => true
+];
+
+// Cookie 6: HttpOnly cookie
+$simulatedCookies['httponly_cookie'] = [
+    "value" => "secret",
+    "httponly" => true
+];
+
+// Display simulated cookies
+echo "=== Simulated Cookies ===\n\n";
+foreach($simulatedCookies as $name => $data){
+    echo "Name: $name\n";
+    if(is_array($data)){
+        foreach($data as $key => $value){
+            echo "  $key: $value\n";
+        }
+    } else {
+        echo "  Value: $data\n";
+    }
+    echo "\n";
+}
+?>
+
+
+output:
+
+=== Simulated Cookies ===
+
+Name: user
+  Value: JohnDoe
+
+Name: session_id
+  value: abc123
+  expires: 2025-08-15 16:32:18
+
+Name: theme
+  value: dark
+  path: /
+
+Name: lang
+  value: en
+  domain: example.com
+
+Name: secure_cookie
+  value: secure_value
+  secure: 1
+
+Name: httponly_cookie
+  value: secret
+  httponly: 1
+
+
+
+=== Code Execution Successful ===

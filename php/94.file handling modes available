@@ -1,0 +1,48 @@
+<?php
+// Simulated file content
+$fileContent = "";
+
+// 1. Simulate write mode (w) - overwrites content
+$fileContent = "This is written using 'w' mode.\n";
+echo "After 'w' mode:\n$fileContent\n";
+
+// 2. Simulate append mode (a) - adds content at the end
+$fileContent .= "This is appended using 'a' mode.\n";
+echo "After 'a' mode:\n$fileContent\n";
+
+// 3. Simulate read mode (r) - just display content
+echo "Reading content (r mode simulated):\n$fileContent\n";
+
+// 4. Simulate read/write mode (r+) - read and add
+$fileContent .= "Adding text using 'r+' mode.\n";
+echo "After 'r+' mode:\n$fileContent\n";
+
+// 5. Simulate write/read mode (w+) - overwrites and reads
+$fileContent = "Overwriting content using 'w+' mode.\n";
+echo "After 'w+' mode:\n$fileContent\n";
+?>
+
+OUTPUT:
+
+After 'w' mode:
+This is written using 'w' mode.
+
+After 'a' mode:
+This is written using 'w' mode.
+This is appended using 'a' mode.
+
+Reading content (r mode simulated):
+This is written using 'w' mode.
+This is appended using 'a' mode.
+
+After 'r+' mode:
+This is written using 'w' mode.
+This is appended using 'a' mode.
+Adding text using 'r+' mode.
+
+After 'w+' mode:
+Overwriting content using 'w+' mode.
+
+
+
+=== Code Execution Successful ===

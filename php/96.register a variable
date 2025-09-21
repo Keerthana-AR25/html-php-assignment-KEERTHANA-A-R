@@ -1,0 +1,18 @@
+<?php
+// 1. Start the session
+session_start();
+
+// 2. Register variables in the session
+$_SESSION['username'] = "Alice";
+$_SESSION['role'] = "Admin";
+
+// 3. Access session variables
+echo "Username stored in session: " . $_SESSION['username'] . "\n";
+echo "Role stored in session: " . $_SESSION['role'] . "\n";
+?>
+
+
+OUTPUT:
+
+Username stored in session: Alice
+Role stored in session: Admin

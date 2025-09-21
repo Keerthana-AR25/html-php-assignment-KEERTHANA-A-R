@@ -1,0 +1,62 @@
+<?php
+echo "=== Demonstrating PHP File Handling Modes (Simulated) ===\n\n";
+
+// 1. Write mode (w) - creates or truncates
+$file = fopen("php://memory", "w+");
+fwrite($file, "This is written in w mode.\n");
+rewind($file);
+echo "w mode output:\n" . stream_get_contents($file) . "\n\n";
+
+// 2. Append mode (a) - adds to end
+$file = fopen("php://memory", "a+");
+fwrite($file, "First line in a mode.\n");
+fwrite($file, "Appended line in a mode.\n");
+rewind($file);
+echo "a mode output:\n" . stream_get_contents($file) . "\n\n";
+
+// 3. Read mode (r) - must exist (simulate by writing first)
+$temp = fopen("php://memory", "w+");
+fwrite($temp, "Reading in r mode.\n");
+rewind($temp);
+echo "r mode output:\n" . fread($temp, 1024) . "\n\n";
+
+// 4. Read & Write mode (r+)
+$temp = fopen("php://memory", "w+");
+fwrite($temp, "Original text.\n");
+rewind($temp);
+fwrite($temp, "Edited in r+ mode.\n"); // Overwrites from start
+rewind($temp);
+echo "r+ mode output:\n" . stream_get_contents($temp) . "\n\n";
+
+// 5. Exclusive create mode (x) - simulated
+echo "x mode simulation: Creates a new file only if it does not exist.\n";
+echo "(In online compilers, actual file creation is restricted.)\n";
+?>
+
+
+OUTPUT:
+
+=== Demonstrating PHP File Handling Modes (Simulated) ===
+
+w mode output:
+This is written in w mode.
+
+
+a mode output:
+First line in a mode.
+Appended line in a mode.
+
+
+r mode output:
+Reading in r mode.
+
+
+r+ mode output:
+Edited in r+ mode.
+
+
+x mode simulation: Creates a new file only if it does not exist.
+(In online compilers, actual file creation is restricted.)
+
+
+=== Code Execution Successful ===

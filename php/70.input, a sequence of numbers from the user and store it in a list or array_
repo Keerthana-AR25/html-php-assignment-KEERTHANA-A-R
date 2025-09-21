@@ -1,0 +1,25 @@
+<?php
+// Simulate user input (replace with your own numbers)
+$input = "10, 20, 30, 40, 50";
+
+// Convert comma-separated string to array
+$numbersArray = array_map('trim', explode(",", $input));
+
+// Display the array
+echo "Stored Numbers:\n";
+print_r($numbersArray);
+?>
+
+
+OUTPUT:
+
+Stored Numbers:
+Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+    [4] => 50
+)
+

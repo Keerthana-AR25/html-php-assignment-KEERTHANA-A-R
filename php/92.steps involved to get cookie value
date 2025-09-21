@@ -1,0 +1,22 @@
+<?php
+// 1. Set a cookie (expires in 1 hour)
+$cookie_name = "user";
+$cookie_value = "Alice";
+setcookie($cookie_name, $cookie_value, time() + 3600, "/"); // "/" means available across the site
+
+// 2. Check if the cookie is available
+echo "=== Cookie Example ===\n";
+
+if(isset($_COOKIE[$cookie_name])){
+    // 3. Access the cookie value
+    $value = $_COOKIE[$cookie_name];
+    echo "Cookie '$cookie_name' value: $value\n";
+} else {
+    echo "Cookie '$cookie_name' is not set yet. It will be available on next request.\n";
+}
+?>
+
+
+OUTPUT:
+
+Cookie 'user' is not set yet. It will be available on next request.

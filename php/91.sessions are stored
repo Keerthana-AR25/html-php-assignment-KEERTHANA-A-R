@@ -1,0 +1,31 @@
+<?php
+// Start session
+session_start();
+
+// Set session variables
+$_SESSION['username'] = 'Alice';
+$_SESSION['role'] = 'Admin';
+
+// Display session data
+echo "Session Data:\n";
+echo "Username: " . $_SESSION['username'] . "\n";
+echo "Role: " . $_SESSION['role'] . "\n";
+
+// To remove a session variable
+unset($_SESSION['role']);
+echo "\nAfter removing 'role':\n";
+echo "Role: " . (isset($_SESSION['role']) ? $_SESSION['role'] : 'Not set') . "\n";
+
+// To destroy the session completely
+// session_destroy();
+// echo "Session destroyed.";
+?>
+
+OUTPUT:
+
+Session Data:
+Username: Alice
+Role: Admin
+
+After removing 'role':
+Role: Not set

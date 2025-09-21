@@ -1,0 +1,31 @@
+<?php
+// Set your birthday (format: YYYY-MM-DD)
+$birthday = "2000-08-20";
+
+// Get current date
+$today = date("Y-m-d");
+
+// Convert to DateTime objects
+$todayObj = new DateTime($today);
+$birthdayObj = new DateTime(date("Y") . "-" . date("m-d", strtotime($birthday)));
+
+// If birthday has already passed this year, use next year
+if($birthdayObj < $todayObj){
+    $birthdayObj->modify("+1 year");
+}
+
+// Calculate difference
+$interval = $todayObj->diff($birthdayObj);
+$daysRemaining = $interval->days;
+
+// Output
+echo "Today: " . $todayObj->format("Y-m-d") . "\n";
+echo "Next Birthday: " . $birthdayObj->format("Y-m-d") . "\n";
+echo "Days until birthday: $daysRemaining\n";
+?>
+
+output:
+
+Today: 2025-08-15
+Next Birthday: 2025-08-20
+Days until birthday: 5

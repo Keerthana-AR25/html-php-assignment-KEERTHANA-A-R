@@ -1,0 +1,49 @@
+<?php
+// Start the session
+session_start();
+
+// Initialize messages array
+$messages = [];
+
+// 1. Set session values
+if(!isset($_SESSION['user'])){
+    $_SESSION['user'] = "JohnDoe";
+    $messages[] = "Session variable 'user' is set to 'JohnDoe'.";
+}
+if(!isset($_SESSION['role'])){
+    $_SESSION['role'] = "Admin";
+    $messages[] = "Session variable 'role' is set to 'Admin'.";
+}
+
+// 2. Display current session data
+$messages[] = "Current session data:";
+foreach($_SESSION as $key => $value){
+    $messages[] = "$key => $value";
+}
+
+// 3. Remove a session variable
+if(isset($_SESSION['role'])){
+    unset($_SESSION['role']);
+    $messages[] = "Session variable 'role' has been removed.";
+}
+
+// 4. Destroy the session completely (optional, uncomment to test)
+// session_unset();
+// session_destroy();
+// $messages[] = "All session data destroyed.";
+
+// Display messages
+echo "=== Session Demo ===\n";
+foreach($messages as $msg){
+    echo $msg . "\n";
+}
+?>
+
+output:
+
+Session variable 'user' is set to 'JohnDoe'.
+Session variable 'role' is set to 'Admin'.
+Current session data:
+user => JohnDoe
+role => Admin
+Session variable 'role' has been removed.

@@ -1,0 +1,56 @@
+<?php
+// Simulate login/logout in one execution
+$action = $_POST['action'] ?? '';
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
+
+// Hardcoded credentials
+$admin_user = "admin";
+$admin_pass = "12345";
+
+// Flag to show dashboard
+$logged_in = false;
+$message = '';
+
+// Handle login
+if ($action === "login") {
+    if ($username === $admin_user && $password === $admin_pass) {
+        $logged_in = true;
+        $message = "✅ Login successful! Welcome, $username.<br><br>";
+    } else {
+        $message = "❌ Invalid username or password.<br><br>";
+    }
+}
+
+// Handle logout
+if ($action === "logout") {
+    $message = "🔒 You have been logged out.<br><br>";
+}
+
+echo $message;
+
+if ($logged_in) {
+    echo "<h2>Admin Dashboard</h2>";
+    echo "Hello, $username!<br><br>";
+    echo '
+    <form method="post">
+        <input type="hidden" name="action" value="logout">
+        <input type="submit" value="Logout">
+    </form>
+    ';
+} else {
+    echo '
+    <h2>Admin Login</h2>
+    <form method="post">
+        <input type="hidden" name="action" value="login">
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+    ';
+}
+?>
+
+OUTPUT:
+
+A module you have imported isn't available at the moment. It will be available soon.

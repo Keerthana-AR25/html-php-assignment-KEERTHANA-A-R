@@ -1,0 +1,25 @@
+<?php
+// Simulated uploaded file name
+$uploadedFileName = "sample.gif"; // Change this to test: e.g., "photo.jpg", "image.png"
+
+// Allowed extensions
+$allowedExtensions = ['jpg', 'jpeg', 'png'];
+
+// Extract file extension (lowercase)
+$fileExtension = strtolower(pathinfo($uploadedFileName, PATHINFO_EXTENSION));
+
+// Check file type
+if (in_array($fileExtension, $allowedExtensions)) {
+    echo "✅ File accepted: $uploadedFileName\n";
+} else {
+    echo "❌ Error: Only JPG or PNG files are allowed! ($uploadedFileName)\n";
+}
+?>
+
+OUTPUT:
+
+ERROR!
+❌ Error: Only JPG or PNG files are allowed! (sample.gif)
+
+
+=== Code Execution Successful ===

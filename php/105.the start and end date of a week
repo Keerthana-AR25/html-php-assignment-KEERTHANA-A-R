@@ -1,0 +1,26 @@
+<?php
+function getStartAndEndDate($week, $year) {
+    // Create a DateTime object with ISO week format
+    $dto = new DateTime();
+    $dto->setISODate($year, $week);
+
+    // Start of the week (Monday)
+    $start = $dto->format('Y-m-d');
+
+    // End of the week (Sunday)
+    $dto->modify('+6 days');
+    $end = $dto->format('Y-m-d');
+
+    return array($start, $end);
+}
+
+// Example usage
+list($startDate, $endDate) = getStartAndEndDate(12, 2014);
+
+echo "Week 12 of 2014 starts on: " . $startDate . "<br>";
+echo "Week 12 of 2014 ends on: " . $endDate;
+?>
+
+OUTPUT:
+
+Week 12 of 2014 starts on: 2014-03-17<br>Week 12 of 2014 ends on: 2014-03-23

@@ -1,0 +1,81 @@
+<?php
+// Start the session
+session_start();
+
+// Initialize shopping cart if not already set
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+// Simulated "page actions" - in a real site, this comes from forms/buttons
+$action = $_GET['action'] ?? ''; // 'add', 'remove', or empty
+$productId = $_GET['id'] ?? '';
+$productName = $_GET['name'] ?? '';
+$productPrice = $_GET['price'] ?? '';
+
+// Function to add a product to the cart
+function addToCart($id, $name, $price) {
+    $_SESSION['cart'][] = [
+        'id' => $id,
+        'name' => $name,
+        'price' => $price
+    ];
+}
+
+// Function to remove a product by ID
+function removeFromCart($id) {
+    foreach ($_SESSION['cart'] as $key => $item) {
+        if ($item['id'] == $id) {
+            unset($_SESSION['cart'][$key]);
+        }
+    }
+    // Reindex array
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
+}
+
+// Handle actions
+if ($action === 'add' && $productId && $productName && $productPrice) {
+    addToCart($productId, $productName, $productPrice);
+}
+
+if ($action === 'remove' && $productId) {
+    removeFromCart($productId);
+}
+
+// Display shopping cart
+echo "=== Your Shopping Cart ===\n";
+if (empty($_SESSION['cart'])) {
+    echo "Cart is empty.\n";
+} else {
+    $total = 0;
+    foreach ($_SESSION['cart'] as $item) {
+        echo $item['name'] . " - ₹" . $item['price'] . " [ID: " . $item['id'] . "]\n";
+        $total += $item['price'];
+    }
+    echo "Total: ₹$total\n";
+}
+
+// Simulated page links (in real site, these are HTML links or buttons)
+echo "\n=== Simulated Actions ===\n";
+echo "Add T-shirt: ?action=add&id=101&name=T-shirt&price=299\n";
+echo "Add Jeans: ?action=add&id=102&name=Jeans&price=799\n";
+echo "Remove T-shirt: ?action=remove&id=101\n";
+echo "Clear Cart: ?action=clear\n";
+
+// Optional: Clear entire cart
+if ($action === 'clear') {
+    $_SESSION['cart'] = [];
+    echo "Cart cleared.\n";
+}
+?>
+
+
+OUTPUT:
+Cart is empty.
+
+=== Simulated Actions ===
+Add T-shirt: ?action=add&id=101&name=T-shirt&price=299
+Add Jeans: ?action=add&id=102&name=Jeans&price=799
+Remove T-shirt: ?action=remove&id=101
+Clear Cart: ?action=clear
+

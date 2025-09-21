@@ -1,0 +1,37 @@
+<?php
+// Simulate file content instead of writing to disk
+$filename = "example.txt"; // just for reference
+$fileContent = "";
+
+// 1. Simulate writing to file
+$fileContent .= "Hello, this is a test file.\n";
+$fileContent .= "We are learning PHP file functions.\n";
+echo "Data written to '$filename' (simulated).\n";
+
+// 2. Simulate reading the file
+echo "\nFile Content (simulated):\n$fileContent";
+
+// 3. Simulate appending data
+$fileContent .= "Appending new line using simulated file append.\n";
+echo "\nData appended to '$filename' (simulated).\n";
+
+// 4. Simulate file size
+$size = strlen($fileContent);
+echo "File size (simulated): $size bytes\n";
+
+// 5. Simulate deleting the file
+$fileContent = "";
+echo "File '$filename' has been deleted (simulated).\n";
+?>
+
+output:
+
+Data written to 'example.txt' (simulated).
+
+File Content (simulated):
+Hello, this is a test file.
+We are learning PHP file functions.
+
+Data appended to 'example.txt' (simulated).
+File size (simulated): 112 bytes
+File 'example.txt' has been deleted (simulated).

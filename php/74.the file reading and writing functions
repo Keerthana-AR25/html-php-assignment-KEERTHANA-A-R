@@ -1,0 +1,52 @@
+<?php
+// Open an in-memory file for read/write
+$fp = fopen("php://memory", "w+");
+
+// =======================
+// 1. WRITE TO FILE (fwrite)
+// =======================
+fwrite($fp, "Hello, this is PHP file handling in memory!\n");
+fwrite($fp, "We are writing this text into a memory file.\n");
+
+// Move pointer back to start for reading
+rewind($fp);
+
+// =======================
+// 2. READ FILE LINE BY LINE (fgets())
+// =======================
+echo "Reading file line-by-line using fgets():\n";
+while (!feof($fp)) {
+    echo fgets($fp);
+}
+
+// =======================
+// 3. APPEND TO FILE
+// =======================
+fseek($fp, 0, SEEK_END); // Move to end
+fwrite($fp, "This line is appended at the end.\n");
+
+// Move pointer back to start for final reading
+rewind($fp);
+echo "\nReading whole file after appending:\n";
+while (!feof($fp)) {
+    echo fgets($fp);
+}
+
+fclose($fp);
+?>
+
+
+
+OUTPUT:
+
+Reading file line-by-line using fgets():
+Hello, this is PHP file handling in memory!
+We are writing this text into a memory file.
+
+Reading whole file after appending:
+Hello, this is PHP file handling in memory!
+We are writing this text into a memory file.
+This line is appended at the end.
+
+
+=== Code Execution Successful ===

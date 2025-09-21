@@ -1,0 +1,19 @@
+<?php
+$fruits = ["apple", "banana", "cherry"];
+
+// Step 1 & 2: Delete "banana" (index 1)
+unset($fruits[1]);
+
+// Step 3: Re-index
+$fruits = array_values($fruits);
+
+// Step 4: Verify
+print_r($fruits);
+?>
+
+OUTPUT:
+Array
+(
+    [0] => apple
+    [1] => cherry
+)

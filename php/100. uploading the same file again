@@ -1,0 +1,91 @@
+<?php
+/**
+ * Duplicate Upload Guard
+ * - CLI (online compiler): simulates uploads by asking for filenames; prevents duplicates.
+ * - Web server (XAMPP/WAMP): real <input type="file"> upload; prevents duplicates in /uploads.
+ */
+
+if (PHP_SAPI === 'cli') {
+    // ---------- CLI MODE (online compiler friendly) ----------
+    $index = [];
+
+    // Optional persistence if the environment allows writing files
+    $indexFile = __DIR__ . '/uploads_index.json';
+    if (is_readable($indexFile)) {
+        $data = json_decode(@file_get_contents($indexFile), true);
+        if (is_array($data)) $index = $data;
+    }
+
+    echo "=== Duplicate Upload Guard (Simulation) ===\n";
+    echo "Type file names to 'upload'. Press Enter on an empty line to finish.\n\n";
+
+    while (true) {
+        echo "Filename: ";
+        $line = fgets(STDIN);
+        if ($line === false) break;
+        $name = trim($line);
+        if ($name === '') break;
+
+        if (isset($index[$name])) {
+            echo "❌ Error: '$name' already exists. Please upload a different file.\n";
+        } else {
+            $index[$name] = true;
+            echo "✅ Uploaded: '$name'\n";
+        }
+    }
+
+    // Try to persist (ignore errors if FS is read-only)
+    @file_put_contents($indexFile, json_encode($index, JSON_PRETTY_PRINT));
+
+    echo "\nRecorded files this run:\n";
+    if ($index) {
+        foreach (array_keys($index) as $n) echo " - $n\n";
+    } else {
+        echo " (none)\n";
+    }
+    exit;
+}
+
+// ---------- WEB MODE (real server) ----------
+session_start();
+$msg = '';
+
+if (!empty($_FILES['file']['name'])) {
+    $uploadDir = __DIR__ . '/uploads/';
+    if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0777, true); }
+
+    $name = basename($_FILES['file']['name']);
+    $path = $uploadDir . $name;
+
+    if (file_exists($path)) {
+        $msg = "<p style='color:red'>Error: <b>{$name}</b> already exists. Please upload a different file.</p>";
+    } elseif (is_uploaded_file($_FILES['file']['tmp_name']) && move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+        $msg = "<p style='color:green'>Uploaded <b>{$name}</b> successfully.</p>";
+    } else {
+        $msg = "<p style='color:red'>Upload failed.</p>";
+    }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Duplicate Upload Guard</title></head>
+<body>
+<h2>Duplicate Upload Guard</h2>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="file" required>
+  <button type="submit">Upload</button>
+</form>
+<?php echo $msg; ?>
+</body>
+</html>
+
+
+OUTPUT:
+
+=== Duplicate Upload Guard (Simulation) ===
+Type file names to 'upload'. Press Enter on an empty line to finish.
+
+Filename: MM
+✅ Uploaded: 'MM'
+Filename: MKMK
+✅ Uploaded: 'MKMK'

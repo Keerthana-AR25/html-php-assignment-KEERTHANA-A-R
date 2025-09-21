@@ -1,0 +1,73 @@
+<?php
+// Define network functions
+$networkFunctions = [
+    "Addressing & Name Resolution" => [
+        "Examples" => ["DNS", "DHCP", "ARP"],
+        "Purpose" => "Identify devices and map names to addresses."
+    ],
+    "Routing & Forwarding" => [
+        "Examples" => ["RIP", "OSPF", "BGP"],
+        "Purpose" => "Determine and forward data packets through the best path."
+    ],
+    "Monitoring & Management" => [
+        "Examples" => ["SNMP", "NetFlow", "Ping", "Traceroute"],
+        "Purpose" => "Monitor network devices, traffic, and performance."
+    ],
+    "Security" => [
+        "Examples" => ["Firewall", "IDS/IPS", "VPN"],
+        "Purpose" => "Protect network from unauthorized access and attacks."
+    ],
+    "Quality of Service (QoS)" => [
+        "Examples" => ["Traffic shaping", "Latency monitoring", "Jitter control"],
+        "Purpose" => "Prioritize and manage network traffic for critical applications."
+    ],
+    "Discovery & Topology" => [
+        "Examples" => ["LLDP", "CDP", "Nmap"],
+        "Purpose" => "Discover network devices and visualize topology."
+    ],
+    "Service & Access" => [
+        "Examples" => ["HTTP", "FTP", "Proxy servers", "Load balancers"],
+        "Purpose" => "Provide network services and application access."
+    ]
+];
+
+// Display network functions
+foreach ($networkFunctions as $type => $details) {
+    echo "=== $type ===\n";
+    echo "Examples: " . implode(", ", $details["Examples"]) . "\n";
+    echo "Purpose: " . $details["Purpose"] . "\n\n";
+}
+?>
+
+OUTPUT:
+
+
+=== Addressing & Name Resolution ===
+Examples: DNS, DHCP, ARP
+Purpose: Identify devices and map names to addresses.
+
+=== Routing & Forwarding ===
+Examples: RIP, OSPF, BGP
+Purpose: Determine and forward data packets through the best path.
+
+=== Monitoring & Management ===
+Examples: SNMP, NetFlow, Ping, Traceroute
+Purpose: Monitor network devices, traffic, and performance.
+
+=== Security ===
+Examples: Firewall, IDS/IPS, VPN
+Purpose: Protect network from unauthorized access and attacks.
+
+=== Quality of Service (QoS) ===
+Examples: Traffic shaping, Latency monitoring, Jitter control
+Purpose: Prioritize and manage network traffic for critical applications.
+
+=== Discovery & Topology ===
+Examples: LLDP, CDP, Nmap
+Purpose: Discover network devices and visualize topology.
+
+=== Service & Access ===
+Examples: HTTP, FTP, Proxy servers, Load balancers
+Purpose: Provide network services and application access.
+
+

@@ -1,0 +1,31 @@
+<?php
+// Example file path
+$path = "/home/user/documents/report.pdf";
+
+// 1. Get the full file name
+$filename = basename($path);
+
+// 2. Get file name without extension
+$filenameWithoutExt = pathinfo($path, PATHINFO_FILENAME);
+
+// 3. Get file extension
+$fileExtension = pathinfo($path, PATHINFO_EXTENSION);
+
+// 4. Get directory name
+$directory = pathinfo($path, PATHINFO_DIRNAME);
+
+// Display results
+echo "File Path: $path\n";
+echo "Full File Name: $filename\n";
+echo "File Name without Extension: $filenameWithoutExt\n";
+echo "File Extension: $fileExtension\n";
+echo "Directory: $directory\n";
+?>
+
+output:
+
+File Path: /home/user/documents/report.pdf
+Full File Name: report.pdf
+File Name without Extension: report
+File Extension: pdf
+Directory: /home/user/documents

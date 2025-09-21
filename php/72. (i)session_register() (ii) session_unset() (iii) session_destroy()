@@ -1,0 +1,35 @@
+<?php
+session_start(); // Start the session
+
+// (i) session_register() equivalent
+// Old: session_register("username");
+// New way:
+$_SESSION["username"] = "JohnDoe";
+$_SESSION["email"] = "john@example.com";
+
+echo "<h3>Session Variables Registered:</h3>";
+print_r($_SESSION);
+
+// (ii) session_unset() - remove all session variables but keep session
+session_unset();
+echo "<br><br><strong>After session_unset():</strong><br>";
+print_r($_SESSION);
+
+// (iii) session_destroy() - remove session data completely
+session_destroy();
+echo "<br><br>Session destroyed.";
+?>
+
+OUTPUT:
+
+<h3>Session Variables Registered:</h3>Array
+(
+    [username] => JohnDoe
+    [email] => john@example.com
+)
+<br><br><strong>After session_unset():</strong><br>Array
+(
+)
+<br><br>Session destroyed.
+
+=== Code Execution Successful ===

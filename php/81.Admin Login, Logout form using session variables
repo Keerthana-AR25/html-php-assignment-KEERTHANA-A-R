@@ -1,0 +1,41 @@
+<?php
+// Simulated admin credentials
+$admin_username = "admin";
+$admin_password = "admin123";
+
+// Simulated user input (change these to test)
+$input_username = "admin"; // Replace with test username
+$input_password = "admin123"; // Replace with test password
+$action = "login"; // Use "login" or "logout"
+
+// Simulated session variable
+$session_admin = null;
+
+if($action === "login"){
+    if($input_username === $admin_username && $input_password === $admin_password){
+        $session_admin = $input_username;
+        echo "Login successful! Welcome, $session_admin.\n";
+    } else {
+        echo "Invalid username or password!\n";
+    }
+} elseif($action === "logout"){
+    $session_admin = null;
+    echo "You have been logged out.\n";
+}
+
+// Display dashboard if logged in
+if($session_admin){
+    echo "=== Dashboard ===\n";
+    echo "Admin: $session_admin\n";
+    echo "You are logged in.\n";
+} else {
+    echo "You are not logged in.\n";
+}
+?>
+output:
+
+
+Login successful! Welcome, admin.
+=== Dashboard ===
+Admin: admin
+You are logged in.

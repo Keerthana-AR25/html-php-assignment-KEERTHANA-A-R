@@ -1,0 +1,47 @@
+<?php
+// Function to append a line to a "file" (in memory)
+function appendLineToFile($filename, $newLine) {
+    // Open memory-based file
+    $fp = fopen($filename, "a+"); // a+ = read/write and append mode
+    
+    if (!$fp) {
+        echo "Unable to open file!";
+        return;
+    }
+    
+    // Append new line
+    fwrite($fp, $newLine . "\n");
+    
+    // Move pointer to start to read file contents
+    rewind($fp);
+    
+    // Display updated file content
+    echo "File content after appending:\n";
+    while (!feof($fp)) {
+        echo fgets($fp);
+    }
+    
+    fclose($fp);
+}
+
+// --------------------
+// Test the function
+// --------------------
+// Use php://memory instead of demo.txt (safe for online compilers)
+$filename = "php://memory";
+
+// First, create the file with some content
+$fp = fopen($filename, "w+");
+fwrite($fp, "First line in file.\n");
+fclose($fp);
+
+// Append new line using the function
+appendLineToFile($filename, "This is the appended line");
+?>
+
+
+OUTPUT:
+File content after appending:
+This is the appended line
+
+

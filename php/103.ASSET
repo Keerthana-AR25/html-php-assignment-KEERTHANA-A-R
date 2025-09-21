@@ -1,0 +1,19 @@
+<?php
+// Start the session
+session_start();
+
+// Check if 'views' is already set
+if(isset($_SESSION['views'])) {
+    $_SESSION['views'] = $_SESSION['views'] + 1;   // Increment counter
+} else {
+    $_SESSION['views'] = 1;   // First visit
+}
+
+// Display the counter
+echo "You have visited this page " . $_SESSION['views'] . " times.";
+?>
+
+
+OUTPUT:
+
+You have visited this page 1 times.

@@ -1,0 +1,25 @@
+<?php
+// File name
+$filename = "sample.txt";
+
+// Line number to fetch (example: 3rd line)
+$n = 3;
+
+// Check if file exists
+if(file_exists($filename)) {
+    $file = file($filename); // Reads entire file into an array (each line = array element)
+
+    if(isset($file[$n - 1])) {
+        echo "Line $n: " . htmlspecialchars($file[$n - 1]);
+    } else {
+        echo "no data";
+    }
+} else {
+    echo "File not found.";
+}
+?>
+
+
+OUTPUT:
+
+File not found.

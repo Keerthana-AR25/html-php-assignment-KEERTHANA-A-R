@@ -1,0 +1,26 @@
+<?php
+// Simulate user input (replace with any email to test)
+$email = "example@gmail.com";
+
+// Validate email
+if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+    $validationResult = "Valid Email";
+    // Extract domain
+    $parts = explode("@", $email);
+    $domain = isset($parts[1]) ? $parts[1] : "";
+} else {
+    $validationResult = "Invalid Email";
+    $domain = "N/A";
+}
+
+// Display result
+echo "Email: $email\n";
+echo "Validation: $validationResult\n";
+echo "Domain: $domain\n";
+?>
+
+output:
+
+Email: example@gmail.com
+Validation: Valid Email
+Domain: gmail.com

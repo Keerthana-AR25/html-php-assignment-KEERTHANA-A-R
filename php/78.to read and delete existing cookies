@@ -1,0 +1,27 @@
+<?php
+// Simulate cookies in an array
+$simulatedCookies = [
+    "username" => "JohnDoe",
+    "theme" => "dark"
+];
+
+echo "=== Reading Cookies ===\n";
+foreach($simulatedCookies as $name => $value){
+    echo "Name: $name, Value: $value\n";
+}
+
+// Simulate deleting cookies
+$simulatedCookies = [];
+echo "\n=== Cookies Deleted ===\n";
+if(empty($simulatedCookies)){
+    echo "No cookies found.\n";
+}
+?>
+
+OUTPUT:
+
+Name: username, Value: JohnDoe
+Name: theme, Value: dark
+
+=== Cookies Deleted ===
+No cookies found.

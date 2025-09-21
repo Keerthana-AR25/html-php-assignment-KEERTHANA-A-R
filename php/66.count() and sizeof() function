@@ -1,0 +1,31 @@
+<?php
+// Sample array
+$fruits = ["Apple", "Banana", "Cherry"];
+
+// Using count()
+echo "Using count(): " . count($fruits) . "<br>";
+
+// Using sizeof()
+echo "Using sizeof(): " . sizeof($fruits) . "<br>";
+
+// Multidimensional array example
+$multiArray = ["Apple", "Banana", ["Cherry", "Mango"]];
+
+// Normal count
+echo "count() normal mode: " . count($multiArray) . "<br>";
+
+// Recursive count
+echo "count() recursive mode: " . count($multiArray, COUNT_RECURSIVE) . "<br>";
+
+// sizeof() works exactly the same
+echo "sizeof() recursive mode: " . sizeof($multiArray, COUNT_RECURSIVE) . "<br>";
+?>
+
+OUTPUT:
+
+Using count(): 3<br>
+Using sizeof(): 3<br>count() 
+normal mode: 3<br>count() 
+recursive mode: 5<br>sizeof() 
+recursive mode: 5<br>
+

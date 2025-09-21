@@ -1,0 +1,21 @@
+<?php
+// Sample sentence
+$sentence = "PHP is great. PHP is powerful, and PHP is easy to learn.";
+
+// Step 1: Tokenize using regular expressions (extract only words)
+preg_match_all('/\b\w+\b/', strtolower($sentence), $matches);
+
+// Step 2: Count occurrences of each word
+$wordCounts = array_count_values($matches[0]);
+
+// Step 3: Display results
+echo "<h3>Word Frequency:</h3>";
+foreach ($wordCounts as $word => $count) {
+    echo "$word : $count<br>";
+}
+?>
+
+OUTPUT:
+
+<h3>Word Frequency:</h3>php : 3<br>is : 3<br>great : 1<br>powerful : 1<br>and : 1<br>easy : 1<br>to : 1<br>learn : 1<br>
+

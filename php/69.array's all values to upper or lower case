@@ -1,0 +1,38 @@
+<?php
+function changeArrayCase($array) {
+    // Lowercase values
+    $lowerCaseArray = array_map('strtolower', $array);
+    echo "Values are in lower case.<br>";
+    print_r($lowerCaseArray);
+    echo "<br><br>";
+
+    // Uppercase values
+    $upperCaseArray = array_map('strtoupper', $array);
+    echo "Values are in upper case.<br>";
+    print_r($upperCaseArray);
+}
+
+// Sample array
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+
+// Call the function
+changeArrayCase($Color);
+?>
+
+OUTPUT:
+
+Values are in lower case.<br>Array
+(
+    [A] => blue
+    [B] => green
+    [c] => red
+)
+<br><br>Values are in upper case.<br>Array
+(
+    [A] => BLUE
+    [B] => GREEN
+    [c] => RED
+)
+
+
+=== Code Execution Successful ===

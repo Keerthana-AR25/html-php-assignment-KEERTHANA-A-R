@@ -1,0 +1,59 @@
+<?php
+// Step 1: Historical sales data (Year => Sales in thousands)
+$salesData = [
+    2020 => 150,
+    2021 => 165,
+    2022 => 180,
+    2023 => 210
+];
+
+// Step 2: Calculate total and average sales
+$totalSales = array_sum($salesData);
+$averageSales = $totalSales / count($salesData);
+
+// Step 3: Calculate yearly growth rates
+$growthRates = [];
+$previousYearSales = null;
+
+foreach ($salesData as $year => $sales) {
+    if ($previousYearSales !== null) {
+        $growthRate = (($sales - $previousYearSales) / $previousYearSales) * 100; // %
+        $growthRates[$year] = round($growthRate, 2);
+    }
+    $previousYearSales = $sales;
+}
+
+// Step 4: Average growth rate
+$averageGrowthRate = array_sum($growthRates) / count($growthRates);
+
+// Step 5: Forecast sales for the next 3 years
+$forecastYears = 3;
+$lastYear = max(array_keys($salesData));
+$lastSales = end($salesData);
+$forecast = [];
+
+for ($i = 1; $i <= $forecastYears; $i++) {
+    $lastSales = $lastSales * (1 + ($averageGrowthRate / 100)); // Apply growth rate
+    $forecast[$lastYear + $i] = round($lastSales, 2);
+}
+
+// Step 6: Display results
+echo "<h3>Sales Analysis Report</h3>";
+echo "Total Sales: $totalSales K<br>";
+echo "Average Sales: " . round($averageSales, 2) . " K<br>";
+echo "Average Growth Rate: " . round($averageGrowthRate, 2) . "%<br><br>";
+
+echo "<strong>Yearly Growth Rates:</strong><br>";
+foreach ($growthRates as $year => $rate) {
+    echo "$year: $rate%<br>";
+}
+
+echo "<br><strong>Sales Forecast:</strong><br>";
+foreach ($forecast as $year => $value) {
+    echo "$year: $value K<br>";
+}
+?>
+
+OUTPUT:
+
+<h3>Sales Analysis Report</h3>Total Sales: 705 K<br>Average Sales: 176.25 K<br>Average Growth Rate: 11.92%<br><br><strong>Yearly Growth Rates:</strong><br>2021: 10%<br>2022: 9.09%<br>2023: 16.67%<br><br><strong>Sales Forecast:</strong><br>2024: 235.03 K<br>2025: 263.05 K<br>2026: 294.4 K<br>

@@ -1,0 +1,22 @@
+<?php
+// Start the session
+session_start();
+
+// Set session variable
+if(!isset($_SESSION["username"])) {
+    $_SESSION["username"] = "JohnDoe";
+    echo "Session started and variable set!<br>";
+} else {
+    echo "Session already active.<br>";
+}
+
+// Retrieve session variable
+echo "Username stored in session is: " . $_SESSION["username"];
+?>
+
+
+OUTPUT:
+
+Session started and variable set!<br>Username stored in session is: JohnDoe
+
+=== Code Execution Successful ===
